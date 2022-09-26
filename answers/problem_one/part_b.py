@@ -60,7 +60,7 @@ def find_number_triplets(number_list) -> list[list[int]]:
 
             if (second_number + first_number) < 2020:
 
-                if second_number not in memory_allocation[first_number].values():  # noqa E501
+                if second_number not in memory_allocation[first_number].values():
 
                     memory_allocation[first_number][second_number] = {}
 
@@ -74,7 +74,7 @@ def find_number_triplets(number_list) -> list[list[int]]:
 
                 if 2020 == (first_number + second_number + third_number):
 
-                    triplet = sorted([first_number, second_number, third_number])  # noqa E501
+                    triplet = sorted([first_number, second_number, third_number])
 
                     if triplet not in output:
 
