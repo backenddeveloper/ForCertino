@@ -27,7 +27,7 @@ class CustomString:
         self.given_letter = re.search(r"(?<=[\d]\ )[a-z]{1}(?=\:)", line)[0]
 
         # jxjjjjjjtjjjjjv in the above example
-        self.string_part = re.search(r"(?<=\:\ )[a-z]{1,}", line)[0]
+        self.string_part = re.search(r"(?<=\:\ )[a-z]{1,}$", line)[0]
 
         # Save the original line
         self.raw = line

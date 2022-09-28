@@ -2,11 +2,7 @@ from answers.problem_two.solution import PartA
 from answers.problem_two.solution import PartB
 
 
-test_set = [
-    "1-3 a: abcde",
-    "1-3 b: cdefg",
-    "2-9 c: ccccccccc"
-]
+test_set = ["1-3 a: abcde", "1-3 b: cdefg", "2-9 c: ccccccccc"]
 
 
 def test_part_a_acceptance():

@@ -1,4 +1,5 @@
 import pytest
+from tempfile import NamedTemporaryFile
 from answers.file import Iterator
 from answers.file import IntegerIterator
 from answers.problem_two.custom_string import CustomString
@@ -21,6 +22,38 @@ def test_iterator_reads_input1():
     assert 1925 in list(iterator)
 
 
+def test_iterator_reads_input2():
+
+    iterator = Iterator("problems/input2.txt")
+
+    strings = [CustomString(i) for i in iterator]
+
+    # 1000 lines in file
+    assert 1000 == len(strings)
+
+
+def test_integer_iterator_rejects_negative_numbers():
+
+    with NamedTemporaryFile(buffering=False) as tmp:
+
+        tmp.write(b"-2\n")
+
+        with pytest.raises(Exception):
+
+            list(IntegerIterator(tmp.name))
+
+
+def test_integer_iterator_rejects_invalid_input():
+
+    with NamedTemporaryFile(buffering=False) as tmp:
+
+        tmp.write(b"2 some non-integer\n")
+
+        with pytest.raises(Exception):
+
+            list(IntegerIterator(tmp.name))
+
+
 def test_custom_string_seperates_correctly():
 
     line = "1-3 a: abcde"
@@ -33,18 +66,8 @@ def test_custom_string_seperates_correctly():
 
 def test_custom_string_rejects_invalid_input():
 
-    invalid_line = 'some invalid line of text'
+    invalid_line = "some invalid line of text"
 
     with pytest.raises(Exception):
 
         CustomString(invalid_line)
-
-
-def test_iterator_reads_input2():
-
-    iterator = Iterator("problems/input2.txt")
-
-    strings = [CustomString(i) for i in iterator]
-
-    # 1000 lines in file
-    assert 1000 == len(strings)

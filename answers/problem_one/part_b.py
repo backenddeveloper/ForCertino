@@ -53,6 +53,9 @@ class PartB:
         As we loop over the number_list three times, it is expected to find
         all triplets in a number_list in O(3n * c) ~ O(n) time.
         It is also expected to use O(c) ~ O(1) allocated memory.
+
+        The output list contains all couples seen, this grows proportionally
+        to the number of valid inputs.
         """
 
         memory_allocation = {}
@@ -65,11 +68,11 @@ class PartB:
 
         for second_number in self.number_list:
 
-            for first_number in memory_allocation.keys():
+            for first_number in memory_allocation:
 
                 if (second_number + first_number) < 2020:
 
-                    if second_number not in memory_allocation[first_number].values():
+                    if second_number not in memory_allocation[first_number]:
 
                         memory_allocation[first_number][second_number] = {}
 
@@ -77,9 +80,9 @@ class PartB:
 
         for third_number in self.number_list:
 
-            for first_number in memory_allocation.keys():
+            for first_number in memory_allocation:
 
-                for second_number in memory_allocation[first_number].keys():
+                for second_number in memory_allocation[first_number]:
 
                     if 2020 == (first_number + second_number + third_number):
 

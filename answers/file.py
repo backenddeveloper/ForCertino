@@ -21,7 +21,7 @@ class Iterator:
         """
         Read each line in the file
         """
-        with open(self.filename, "r", encoding='ASCII') as file:
+        with open(self.filename, "r", encoding="ASCII") as file:
 
             for line in file:
 
@@ -39,5 +39,9 @@ class IntegerIterator(Iterator):
         This will error if one of the lines is not readable as an Integer
         """
         for line in super().__iter__():
+
+            if int(line) != abs(int(line)):
+
+                raise Exception(f"We only accept positive integers, got {line}")
 
             yield int(line)
