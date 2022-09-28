@@ -1,6 +1,7 @@
+import pytest
+from answers.file import Iterator
 from answers.file import IntegerIterator
-from answers.file import CustomString
-from answers.file import CustomStringIterator
+from answers.problem_two.custom_string import CustomString
 
 
 def test_iterator_reads_input1():
@@ -30,13 +31,20 @@ def test_custom_string_seperates_correctly():
     assert "abcde" == custom_string.string_part
 
 
+def test_custom_string_rejects_invalid_input():
+
+    invalid_line = 'some invalid line of text'
+
+    with pytest.raises(Exception):
+
+        CustomString(invalid_line)
+
+
 def test_iterator_reads_input2():
 
-    iterator = CustomStringIterator("problems/input2.txt")
+    iterator = Iterator("problems/input2.txt")
 
-    # The iterator returns CustomStrings
-    for element in iterator:
-        assert isinstance(element, CustomString)
+    strings = [CustomString(i) for i in iterator]
 
-    # 1000 custom strings in the file
-    assert 1000 == len(list(iterator))
+    # 1000 lines in file
+    assert 1000 == len(strings)
